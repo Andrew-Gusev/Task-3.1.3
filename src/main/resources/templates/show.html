@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Показать клиента по id</title>
+  <style>
+    th {background: #ADD8E6}
+    table {border-collapse: collapse;}
+    table th, table td {padding: 10px;}
+  </style>
+</head>
+<body>
+<h1>Пользователи</h1>
+<table th:border="1">
+  <tr>
+    <th>id</th>
+    <th>имя</th>
+  </tr>
+  <tr>
+    <td th:text="${user.getId()}">id</td>
+    <td th:text="${user.getUsername()}">имя</td>
+  </tr>
+  <tr>
+    <td><a th:href="@{/admin/{id}/edit(id=${user.getId()})}">Редактировать</a></td>
+  </tr>
+  <tr>
+    <td>
+      <form th:method="DELETE" th:action="@{/admin/{id}/delete(id=${user.getId()})}">
+        <input type="submit" value="Удалить"/>
+      </form>
+    </td>
+  </tr>
+</table>
+<a class="buttonReturn" th:href="@{/admin/{id}/return(id=${user.getId()})}">Вернуться</a>
+<button class="buttonLogout" onclick="window.location.href ='/logout';">Выход</button>
+</body>
+</html>

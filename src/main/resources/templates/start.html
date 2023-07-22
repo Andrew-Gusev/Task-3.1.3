@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>пользователи</title>
+    <style>
+        th {background: #ADD8E6}
+        table {border-collapse: collapse;}
+        table th, table td {padding: 10px;}
+    </style>
+</head>
+<body>
+<h1>Users</h1>
+<table th:border="1">
+    <tr>
+        <th>Id</th>
+        <th>User</th>
+        <th>Password</th>
+        <th>Update</th>
+        <th>Delete</th>
+    </tr>
+    <tr th:each="us : ${user}">
+        <td th:utext="${us.getId()}">id</td>
+        <td th:utext="${us.getUsername()}">name</td>
+        <td th:utext="${us.getPassword()}">name</td>
+
+        <td>
+            <form th:action="@{/admin/{id}/edit(id=${us.getId()})}" th:method="PATCH">
+                <button type="submit" style="width: 60px">Update</button>
+            </form>
+        </td>
+        <td>
+            <form th:action="@{/admin/{id}/delete(id=${us.getId()})}" th:method="DELETE">
+                <button type="submit" style="width: 60px">Delete</button>
+            </form>
+        </td>
+    </tr>
+</table>
+<br>
+<hr>
+<a href="/admin/new">Create new user</a>
+<button class="buttonLogout" onclick="window.location.href ='logout';">Logout</button>
+</body>
+</html>

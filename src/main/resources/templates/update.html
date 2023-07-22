@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+<title>Update User</title>
+    <style>
+        th {background: #ADD8E6}
+        table {border-collapse: collapse;}
+        table th, table td {padding: 10px;}
+    </style>
+</head>
+<body>
+<form th:method="PATCH" th:action="@{admin/{id}/update(id=${ru.itmentor.spring.boot_security.demo.entities.User.getId()})}" th:object="${ru.itmentor.spring.boot_security.demo.entities.User}">
+  <label for="name">Enter new name: </label>
+  <input type="text" th:field="*{username}" id="name"/>
+  <br/>
+  <input type="submit" value="Update!">
+</form>
+<button class="buttonLogout" onclick="window.location.href ='logout';">Logout</button>
+<a class="buttonReturn" th:href="@{/admin/{id}/return(id=${user.getId()})}">Вернуться</a>
+</body>
+</html>
